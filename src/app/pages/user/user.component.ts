@@ -36,12 +36,20 @@ import { User } from 'src/app/shared/models/user';
         this.step++;
     }
 
+    next(){
+        this.step++;
+    }
+
     confirmParticipation(){
         this.apiService.confirmParticipation(this.campagn);
     }
 
     registerVote(vote : Vote){
+
         this.apiService.registerVote(this.campagn, vote);
+        setTimeout(() => {
+            document.getElementById('loadingDiv').style.display = 'block';
+          }, 4350);
     }
 
     checkMyVote(){

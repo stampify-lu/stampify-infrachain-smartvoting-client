@@ -16,12 +16,12 @@ const routes: Routes = [{
 }, {
   path: 'user',
   component: UserComponent,
-  canActivate: [UserUnknownGuardService]
+  canActivate: [UserValidGuardService]
 },
 {
   path: 'admin',
   component: AdminComponent,
-  canActivate: [UserUnknownGuardService]
+  canActivate: [UserAdminGuardService]
 },
 {
   path: 'login',

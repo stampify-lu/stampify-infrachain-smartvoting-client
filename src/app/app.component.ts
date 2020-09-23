@@ -28,8 +28,6 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.apiService.toolbar = this.toolbar;
     this.apiService.messageBar = this.messageBar;
-    this.apiService.outlet = this.outlet;
-    this.apiService.askPasswordTemplate = this.askPasswordTemplate;
     this.root = document.getElementById('main-container').parentElement;
   }
 }

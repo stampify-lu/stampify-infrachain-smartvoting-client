@@ -20,7 +20,7 @@ export class MessageBarComponent {
   timeout: any;
 
   set action(action: MessageBarAction) {
-    if(this.remove || (this._action && this._action.action && action)) {
+    if(this.remove ) {
       this.queue.push(action);
     } else {
       if(this.timeout) clearTimeout(this.timeout);
