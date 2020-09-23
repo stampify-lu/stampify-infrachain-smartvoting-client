@@ -44,7 +44,6 @@ export class AdminComponent {
         this.router.navigate(['/user']);
         this.apiService.messageBar.action = {message: 'Vote created'};
       });
-    }).catch(err => this.apiService.messageB
-ar.action = {message: err});
+    }).catch(err => this.apiService.messageBar.action = {message: err});
   }
 }

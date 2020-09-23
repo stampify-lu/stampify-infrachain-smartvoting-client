@@ -1,6 +1,5 @@
 
 import { Component, ViewEncapsulation} from '@angular/core';
-//import { Router} from '@angular/router';
 import { ApiService } from 'src/app/shared/api.service';
 import { Meeting, Vote } from 'src/app/shared/models/meeting';
 import { User } from 'src/app/shared/models/user';
