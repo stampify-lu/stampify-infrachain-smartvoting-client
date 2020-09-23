@@ -46,10 +46,12 @@ export class ApiService extends Application {
     super();
     // Try to auto log in
     this.jwtToken = this.getStoredItem('jwt');
-    if(this.jwtToken && JSON.parse(atob(this.jwtToken.split('.')[1])).exp > Date.now() / 1000) {
+    const privateKey = this.getStoredItem('privateKey');
+    if(this.jwtToken && privateKey && JSON.parse(atob(this.jwtToken.split('.')[1])).exp > Date.now() / 1000) {
       this.info().then(() => {
         if(location.hash.length < 3)
           this.router.navigate(['/dashboard']);
+        this.unlockBCAccount(privateKey);
       }, err => this.messageBar.action = {message: err});
     }
   }
@@ -57,6 +59,7 @@ export class ApiService extends Application {
   unlockBCAccount(privateKey: string) {
     this.web3.eth.accounts.wallet.add(privateKey);
     this.userBCPublicKey = this.web3.eth.accounts.wallet[0].address;
+    this.storeItem('privateKey', privateKey);
   }
 
   signOut() {
