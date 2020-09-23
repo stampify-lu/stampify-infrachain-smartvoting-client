@@ -4,16 +4,16 @@
             <div class="title">Select a campagn</div>
             <div class="content">
                 <mat-selection-list #campagn [multiple]="false">
-                    <mat-list-option *ngFor="let campagn of campagns" [value]="campagn">
+                    <mat-list-option *ngFor="let campagn of campagns" [value]="campagn" [disabled]="!checkAvailability(campagn)">
                         {{campagn.name}}
                     </mat-list-option>
                 </mat-selection-list>
                 <p>
-                    Campagn selected: {{campagn.selectedOptions.selected[0]?.value}}
+                    Campagn selected: {{campagn.selectedOptions.selected[0]?.value.name}}
                 </p>
             </div>
             <div class="actions">
-                <button (click)="selectCampaign(campagn.selectedOptions.selected[0]?.value)">Next</button>
+                <button (click)="selectCampaign(campagn.selectedOptions.selected[0]?.value)" *ngIf="campagn.selectedOptions.selected[0]" >Next</button>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
                 Confirm your presence
             </div>
             <div class="content">
-                    I confirm my participation to the vote of {{this.selectedVotingCampagn}}
+                    I confirm my participation to the vote of {{this.campagn.name}}
             </div>
             <div class="actions">
                 <button (click)="confirm()">I confirm</button>
@@ -46,7 +46,7 @@
                 <button (click)="registerVote(3)">Abstain</button>
             </div>
         </div>
-        <div id="loadingDiv">
+        <div id="loadingDiv" style="display:none;">
             <div>
                 <span>Please wait...</span>
             </div>

@@ -55,8 +55,7 @@ export class ApiService extends Application {
   }
 
   unlockBCAccount(privateKey: string) {
-    this.web3.eth.accounts.wallet.add(privateKey);
-    this.userBCPublicKey = this.web3.eth.accounts.wallet[0].address;
+    this.userBCPublicKey = this.web3.eth.accounts.wallet.add(privateKey).address;
   }
 
   signOut() {

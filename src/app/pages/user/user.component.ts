@@ -16,11 +16,15 @@ import { User } from 'src/app/shared/models/user';
     campagns : Meeting[];
     step : number = 1;
     vote: Vote;
-    selectedVotingCampagn : Meeting;
     constructor(public apiService: ApiService) {
         this.apiService.getOwnMeetings(undefined, undefined, undefined, undefined, 'timeEnd', 'DESC').then(campaigns => {
             this.campagns = campaigns.result;
         }, err => this.apiService.messageBar.action = {message: err});
+    }
+
+    checkAvailability(campagn : Meeting){
+        return  new Date(campagn.timeBegin) < new Date() && new Date() < new Date(campagn.timeEnd) ;
+
     }
 
     selectCampaign(campagn : Meeting) {
@@ -47,9 +51,11 @@ import { User } from 'src/app/shared/models/user';
         setTimeout(() => {
             document.getElementById('loadingDiv').style.display = 'block';
           }, 4350);
+        this.step++;
     }
 
     checkMyVote() {
         this.apiService.checkMyVote(this.campagn);
+        this.step++;
     }
   }
