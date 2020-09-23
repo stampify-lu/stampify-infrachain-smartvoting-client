@@ -1,5 +1,5 @@
 import { I18nLang } from "./information";
-import {ModelInterface} from './entity';
+import { ModelInterface } from "./entity";
 
 export const enum UserPlatformRole {
   CUSTOMER = 0,

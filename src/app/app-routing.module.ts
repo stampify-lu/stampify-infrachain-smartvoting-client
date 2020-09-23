@@ -21,11 +21,12 @@ const routes: Routes = [{
 {
   path: 'admin',
   component: AdminComponent,
-  canActivate: [UserAdminGuardService]
+  canActivate: [UserValidGuardService, UserAdminGuardService]
 },
 {
   path: 'login',
-  component: LoginComponent
+  component: LoginComponent,
+  canActivate: [UserUnknownGuardService]
 }, {
   path: '**',
   redirectTo: '/',
@@ -43,7 +44,7 @@ const routes: Routes = [{
   providers: [
     UserUnknownGuardService,
     UserValidGuardService,
-    UserAdminGuardService,
+    UserAdminGuardService
   ],
   declarations: []
 })

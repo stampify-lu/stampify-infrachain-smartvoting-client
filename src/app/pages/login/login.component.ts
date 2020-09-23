@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import {ApiService} from '../../shared/api.service';
 import {UnsubscribingComponent} from '../unsubscribing.component';
-import {UserValidGuardService} from '../../shared/user-valid-guard.service';
 
 declare const window: Window & {initialQueryString: string[][]};
 
@@ -23,7 +22,6 @@ export class LoginComponent extends UnsubscribingComponent {
     super();
   }
 
-
   loginWeak(): boolean {
     this.apiService.consumeLoginWeak(this.accountName, this.password).then(() => {
       this.leaveToSearch(true).then(() => {
@@ -40,9 +38,9 @@ export class LoginComponent extends UnsubscribingComponent {
   }
 
   protected doLeave(connect: boolean) {
-    UserValidGuardService.useReturnUrl(this.router, ['/user']);
+    this.router.navigate(['/user']);
     if(connect) {
-      this.apiService.messageBar.action = {message: 'toolbar.logged'};
+      this.apiService.messageBar.action = {message: 'Logged in!'};
     }
   }
 }

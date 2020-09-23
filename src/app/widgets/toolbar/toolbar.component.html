@@ -21,8 +21,9 @@
 
         </div>
         <div class="center">
-          
-        
+          <a [routerLink]="['/admin']" *ngIf="apiService.userInfo && apiService.userInfo.role === 1">Admin</a>
+          <a [routerLink]="['/user']" *ngIf="apiService.userInfo">Campaigns</a>
+          <a [routerLink]="['/login']" *ngIf="!apiService.userInfo">Login</a>
         <div class="right">
          
          

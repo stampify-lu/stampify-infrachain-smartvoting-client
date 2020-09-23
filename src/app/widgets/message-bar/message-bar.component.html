@@ -2,11 +2,24 @@
 
 <div class="validate-box" id="validate-box" [class.active]="_action"
      [class.alt]="_action && _action.action" [class.deactive]="remove">
+  <ng-container *ngIf="_action && _action.action">
+    <div class="column2">{{_action.message}}</div>
+    <div class="column1 confirmable">
+      <button class="alt ok" (click)="dismiss(); _action.action()"
+              *ngIf="!_action.loadMoney">
+        {{(_action.validate || 'yes')}}
+      </button>
+      <button *ngIf="_action && ((!_action.validate || _action.validate.toLowerCase() !== 'okay') && !_action.loadMoney)"
+        class="alt cancel" (click)="dismiss(); _action.dismiss && _action.dismiss()">
+        {{(_action.cancel || 'cancel')}}
+      </button>
+    </div>
     <div>
       <div (click)="dismiss()" class="close-button"><i class="material-icons">cancel</i></div>
     </div>
-
+  </ng-container>
   <ng-container *ngIf="_action && !_action.action">
+    <div class="message-box">{{_action.message}}</div>
     <div (click)="dismiss()" class="close-button"><i class="material-icons">cancel</i></div>
   </ng-container>
 </div>

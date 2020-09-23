@@ -2,6 +2,37 @@
 
     <div class="container admin">
 
-
+        <h2>Create a voting!</h2>
+        <hr/>
+        <h3>Find users</h3>
+        <input [(ngModel)]="search" (keyup)="doSearch()">
+        <ul>
+            <li *ngFor="let u of formUsers" (click)="addUser(u)" class="pointer">{{u.firstName}} {{u.lastName}}</li>
+        </ul>
+        <hr/>
+        <h3>Selected users</h3>
+        <ul>
+            <li *ngFor="let u of selectedUsers; let i = index" (click)="selectedUsers.splice(i, 1)"
+                class="pointer">{{u.firstName}} {{u.lastName}}</li>
+        </ul>
+        <hr/>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" [(ngModel)]="formName"></td>
+            </tr>
+            <tr>
+                <td>Time begin</td>
+                <td><input type="datetime-local" [(ngModel)]="formTimeBegin"></td>
+            </tr>
+            <tr>
+                <td>Time end</td>
+                <td><input type="datetime-local" [(ngModel)]="formTimeEnd"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button (click)="send()" [disabled]="!formName ||!formTimeBegin || !formTimeEnd">Send</button></td>
+            </tr>
+        </table>
     </div>
 </div>

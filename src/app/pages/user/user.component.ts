@@ -1,6 +1,5 @@
 
 import { Component, ViewEncapsulation} from '@angular/core';
-//import { Router} from '@angular/router';
 import { ApiService } from 'src/app/shared/api.service';
 import { Meeting, Vote } from 'src/app/shared/models/meeting';
 import { User } from 'src/app/shared/models/user';
@@ -19,19 +18,17 @@ import { User } from 'src/app/shared/models/user';
     vote: Vote;
     selectedVotingCampagn : Meeting;
     constructor(public apiService: ApiService) {
-        this.apiService.getOwnMeetings(undefined, undefined, undefined, undefined, "timeEnd", "DESC").then(campaigns => {
+        this.apiService.getOwnMeetings(undefined, undefined, undefined, undefined, 'timeEnd', 'DESC').then(campaigns => {
             this.campagns = campaigns.result;
-        }, err=> this.apiService.messageBar.action = {message: err});
+        }, err => this.apiService.messageBar.action = {message: err});
     }
 
-
-
-    selectCampaign(campagn : Meeting){
+    selectCampaign(campagn : Meeting) {
         this.campagn = campagn;
         this.step++;
     }
 
-    confirm(){
+    confirm() {
         this.apiService.confirmParticipation(this.campagn);
         this.step++;
     }
@@ -52,7 +49,7 @@ import { User } from 'src/app/shared/models/user';
           }, 4350);
     }
 
-    checkMyVote(){
+    checkMyVote() {
         this.apiService.checkMyVote(this.campagn);
     }
   }

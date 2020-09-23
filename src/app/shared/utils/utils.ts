@@ -1,5 +1,4 @@
 
-
 export function expand(el: any, complete?: Function) {
   el.style = 'height: auto; opacity: 0;';
   const h = el.offsetHeight;
@@ -35,4 +34,3 @@ export function toDict(apiService: any, string: string): {
   });
   return dict;
 }
-

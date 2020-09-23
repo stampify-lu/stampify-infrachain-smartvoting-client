@@ -1,13 +1,13 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AppRoutingModule} from '../app-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import {MessageBarComponent} from './message-bar/message-bar.component';
 import {ToolbarComponent} from './toolbar/toolbar.component';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   imports: [
