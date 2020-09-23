@@ -1,0 +1,252 @@
+@import '~src/variables';
+
+.overlay {
+  background-color: lighten($theme-background, 5%);
+  height: 100vh;
+  width: 100vw;
+  top: 100vh;
+  left: 0px;
+  position: fixed;
+  z-index: 1010;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+
+  &.active {
+    opacity: 0.3;
+    top: 0px;
+  }
+}
+
+.validate-box {
+  position: fixed;
+  left: calc(50% - 160px);
+  top: 100%;
+  z-index: 1011;
+  width: 380px;
+  margin: 0px auto;
+  background-color: lighten($theme-background, 5%);
+  border-radius: 6px;
+  box-shadow: 0px 10px 35px 2px rgba(0, 0, 0, 0.15), 0px 15px 20px rgba(0, 0, 0, 0.1);
+  color: $theme-dark;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: $theme-font-x-large;
+  font-weight: 800;
+  line-height: $line-height-reduced;
+  transition: all 0.4s cubic-bezier(.08, .48, .74, 1);
+
+  &.alt {
+    flex-direction: column;
+    top: 50%;
+    opacity: 0;
+
+    button.alt {
+      position: relative;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      width: auto;
+      right: 0px;
+
+      &.ok {
+        color: var(--theme-palette3);
+        width: 50%;
+      }
+
+      &.cancel {
+        color: $theme-grey-medium;
+        width: 50%;
+        transition-duration: 0ms;
+
+        &:hover {
+          color: darken($theme-grey, 20%);
+        }
+      }
+    }
+
+    .column4, .column2 {
+      padding-bottom: 10px;
+    }
+
+    .column1:not(:first-child) {
+      padding: 0px;
+    }
+
+    .confirmable {
+      width: 100%;
+    }
+  }
+
+  &.active {
+    transform: translateY(-100%);
+    top: calc(100% - 40px);
+
+    &.alt {
+      transform: translateY(-50%);
+      top: calc(50% - 40px);
+      opacity: 1;
+    }
+  }
+
+  &.deactive {
+    top: 100%;
+    transform: translateX(0%);
+    transition: all 0.4s cubic-bezier(.58, .26, 1, 1);
+
+    &.alt {
+      top: 50%;
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+
+  .column4, .column2 {
+    padding: 30px;
+    word-break: break-word;
+    line-height: 1.2;
+  }
+
+  .message-box {
+    padding: 24px;
+  }
+
+  .close-button {
+    width: 50px;
+    position: relative;
+    right: 0px;
+    i {
+      width: 40px;
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .column1:not(:first-child) {
+    padding: 20px;
+  }
+
+  button {
+    background-color: transparent;
+    color: $theme-grey;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 10px;
+    right: 18px;
+
+    i {
+      font-size: $theme-font-large;
+    }
+  }
+}
+
+div.modal-box {
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+  z-index: 6;
+  ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      -webkit-overflow-scrolling: auto
+    }
+
+  ::-webkit-scrollbar:vertical {
+      width: 10px;
+  }
+   ::-webkit-scrollbar:horizontal{
+     height: 10px;
+   }
+
+  ::-webkit-scrollbar-thumb {
+      background-color: $theme-grey-medium;
+      border-radius: 10px;
+      border: 2px solid #ffffff;
+  }
+
+  ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: #ffffff;
+      margin: 15px 15px;
+  }
+  .overlay {
+    background-color: $theme-dark;
+    opacity: 0;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    position: absolute;
+    transition: all .3s cubic-bezier(.25, .1, .25, 1);
+
+    &.animate {
+      opacity: 0.3;
+    }
+  }
+
+  .modal {
+    background-color: $theme-light;
+    border-radius: 10px;
+    padding: 24px;
+    min-height: 40px;
+    position: relative;
+    z-index: 1;
+    margin-top: 110px;
+    opacity: 0;
+    max-height: 70%;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--theme-palette3);
+    border: 1px solid $theme-grey-medium;
+
+    transition: all .3s cubic-bezier(.25, .1, .25, 1);
+
+    &.animate {
+      margin-top: -40px;
+      opacity: 1;
+    }
+
+    h1 {
+      font-size: $theme-font-xx-large;
+      color: $theme-grey;
+      margin: 0px;
+    }
+    h2 {
+      font-size: $theme-font-x-large;
+      color: $theme-stampify;
+      margin: 0px;
+    }
+
+    p {
+      font-size: $theme-font-xx-normal;
+      color: $theme-grey-x-medium;
+    }
+    hr {
+      border-top: 1px solid $theme-grey-less-light;
+      border-color: $theme-grey-less-light;
+      margin-bottom: 30px;
+      border-style: solid;
+    }
+
+    .close-button {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      i {
+        color: $theme-grey;
+        opacity: 0.6;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

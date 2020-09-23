@@ -1,0 +1,54 @@
+@import '~src/variables';
+
+.login-wrapper {
+  background: url("../../../assets/images/background.png") no-repeat center;
+  background-size: contain;
+  table {
+    margin-top: 50px;
+  }
+
+  .container {
+    width: 360px;
+    
+    .switch-section {
+      display: grid;
+      grid-template-columns: 1fr 120px;
+      grid-gap: 10px;
+      border-bottom: 1px solid $theme-grey-less-light;
+      padding-bottom: 10px;
+      margin-bottom: 50px;
+      label {
+        font-size: $theme-font-x-large;
+        font-weight: bold;
+        color: var(--theme-palette1);
+      }
+      p {
+        color: $theme-grey;
+        font-size: $theme-font-x-normal;
+      }
+      button {
+        height: 40px;
+      }
+    }
+  }
+
+  .login-container{
+    margin-bottom: 20px;
+  }
+  button:not(:first-child) {
+    margin-left: 3px;
+  }
+  button:not(:last-child) {
+    margin-right: 3px;
+  }
+
+  td:last-child {
+    text-align: left!important;
+  }
+
+  button.rearm {
+    padding-left: 0px;
+    margin-top: 20px;
+  }
+}
+

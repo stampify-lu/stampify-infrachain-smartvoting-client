@@ -1,0 +1,74 @@
+<div class="user-wrapper layout">
+    <div class="container user">
+        <div *ngIf="step === 1">
+            <div class="title">Select a campagn</div>
+            <div class="content">
+                <mat-selection-list #campagn [multiple]="false">
+                    <mat-list-option *ngFor="let campagn of campagns" [value]="campagn">
+                        {{campagn.name}}
+                    </mat-list-option>
+                </mat-selection-list>
+                <p>
+                    Campagn selected: {{campagn.selectedOptions.selected[0]?.value}}
+                </p>
+            </div>
+            <div class="actions">
+                <button (click)="selectCampaign(campagn.selectedOptions.selected[0]?.value)">Next</button>
+            </div>
+        </div>s
+
+
+        <div *ngIf="step === 2">
+            <div class="title">
+                Confirm your presence
+            </div>
+            <div class="content">
+                    I confirm my participation to the vote of {{this.selectedVotingCampagn}}
+            </div>
+            <div class="actions">
+                <button (click)="confirm()">I confirm</button>
+            </div>
+        </div>
+
+
+        <div *ngIf="step === 3">
+            <div class="title">
+                Please make your choice
+            </div>
+            <div class="content">  
+            Social elections take place every 5 years. 
+            On this occasion, the employees elect members of the staff delegation in their company;
+            Do you support this candidate 
+            <div class="candidate candidate-one"></div>
+            <button (click)="registerVote"></button>
+
+            </div>
+            <div class="actions">
+                <button (click)="registerVote(1)">
+                    <div class="candidate candidate-one"></div>
+                </button>
+                <button (click)="registerVote(2)">
+                    <div class="candidate candidate-two"></div>
+                </button>
+                <button (click)="registerVote(3)">
+                    <div class="candidate candidate-three"></div>
+                </button>
+            </div>
+        </div>
+        <div *ngIf="step === 4">
+            <div class="title">
+                Thank you for your participation
+            </div>
+            <div class="content">
+                To register your vote, we used the public blockchain. 
+                At this last step, you can check if your vote has been correctly registered. 
+            </div>
+            <div class="actions">
+                <button (click)="next(4, yes)">Yes, I want to check that my vote has been taken into account in the blockchain </button>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

@@ -1,0 +1,66 @@
+@import "~src/variables";
+
+div.pagination {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div.pages {
+    min-width: 30px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 16px;
+    background-color: $theme-light;
+    box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.17);
+    display: flex;
+    font-size: $theme-font-normal;
+    &.dark {
+      background-color: $theme-grey;
+    }
+
+    & > * {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.0;
+      cursor: pointer;
+      &:first-child {
+        border-radius: 15px 0px 0px 15px;
+      }
+      &:last-child {
+        border-radius: 0px 15px 15px 0px;
+      }
+    }
+    .page {
+      width: 30px;
+      &.active {
+        background-color: var(--theme-palette1);
+        color: $theme-light;
+        border-radius: 15px;
+      }
+      &:hover {
+        font-weight: bold;
+      }
+    }
+
+    .prev {
+      em {
+        color: $theme-blue;
+      }
+    }
+
+    .next {
+      em {
+        color: $theme-blue;
+      }
+    }
+
+    .prev, .next {
+      padding: 0px 5px;
+      color: $theme-blue;
+      font-weight: bold;
+    }
+  }
+}

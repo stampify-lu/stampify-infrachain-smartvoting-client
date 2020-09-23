@@ -1,0 +1,37 @@
+<div [class.active]="_action && (_action.blockUI || _action.action)" class="overlay">&nbsp;</div>
+
+<div class="validate-box" id="validate-box" [class.active]="_action"
+     [class.alt]="_action && _action.action" [class.deactive]="remove">
+  <ng-container *ngIf="_action && _action.action">
+    <div class="column2">{{_action.message | translate}}</div>
+    <div class="column1 confirmable">
+      <button class="alt ok" (click)="dismiss(); _action.action()"
+              *ngIf="!_action.loadMoney">
+        {{(_action.validate || 'yes') | translate}}
+      </button>
+      <button *ngIf="_action && ((!_action.validate || _action.validate.toLowerCase() !== 'okay') && !_action.loadMoney)"
+        class="alt cancel" (click)="dismiss(); _action.dismiss && _action.dismiss()">
+        {{(_action.cancel || 'cancel') | translate}}
+      </button>
+    </div>
+    <div>
+      <div (click)="dismiss()" class="close-button"><i class="material-icons">cancel</i></div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="_action && !_action.action">
+    <div class="message-box">{{_action.message | translate}}</div>
+    <div (click)="dismiss()" class="close-button"><i class="material-icons">cancel</i></div>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="modal && modal.add">
+  <div [id]="modal.name" class="modal-box flex-container">
+    <div [class.animate]="modal.animateOverlay" class="overlay"
+         (click)="(modal.blockUI) ? '' : closeModal(false)"></div>
+    <div [class.animate]="modal.animateModal" class="modal">
+      <div (click)="closeModal(false)" class="close-button"><i class="material-icons">close</i></div>
+      <ng-container *ngTemplateOutlet="modal.content"></ng-container>
+    </div>
+  </div>
+</ng-container>

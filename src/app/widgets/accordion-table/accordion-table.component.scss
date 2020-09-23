@@ -1,0 +1,208 @@
+@import '~src/variables';
+
+div.accordion-table {
+  max-width: 100%;
+
+  &.alt, &.dark {
+    overflow-x: visible;
+    padding-right: 0px !important;
+  }
+
+  div.table {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+
+    .row {
+      line-height: 11px;
+      font-size: $theme-font-x-medium;
+      background-color: $theme-light;
+      border-radius: 6px;
+      box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.08);
+      align-items: center;
+      margin-top: 6px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      position: relative;
+
+      &.accordion {
+        margin-bottom: 6px;
+      }
+
+      &:hover {
+        z-index: 2;
+        box-shadow: 3px 10px 15px 0 rgba(0, 0, 0, 0.08);
+      }
+
+      &.active {
+        z-index: 1;
+        box-shadow: 3px 10px 15px 0 rgba(0, 0, 0, 0.08);
+      }
+
+      &.dark {
+        box-shadow: none;
+        background-color: $theme-blue;
+        &:hover{
+          background-color: darken($theme-blue, 15%);
+        }
+      }
+
+      & > div {
+        border-right: 1px solid $theme-grey-less-light;
+        padding: 14px 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+        font-size: $theme-font-large;
+
+        &:last-child {
+          border-right: 0;
+          text-align: left;
+        }
+      }
+
+      &.head {
+        background-color: transparent;
+        box-shadow: none;
+        margin-bottom: 0px;
+
+        & > div {
+          border: 0;
+          padding-bottom: 0;
+          padding-top: 5px;
+          line-height: 18px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &.sortable {
+            cursor: pointer;
+            position: relative;
+
+            &::after {
+              content: "";
+              width: 0;
+              height: 0;
+              border-left: 3px solid transparent;
+              border-right: 3px solid transparent;
+              border-top: 5px solid $theme-grey;
+              border-bottom: 0;
+              display: inline-block;
+              vertical-align: middle;
+              transition: all .3s ease-in-out;
+              border-top-color: $theme-grey;
+              position: absolute;
+              top: calc(100% - 11px);
+              left: 0px;
+            }
+
+            &.sorted {
+              color: var(--theme-palette1);
+
+              &::after {
+                transform-origin: center;
+                transform: rotate(180deg);
+                border-top-color: var(--theme-palette1);
+              }
+            }
+          }
+        }
+      }
+
+      &.accordion {
+        cursor: pointer;
+        min-height: 39px;
+      }
+
+      .photo {
+        flex-basis: 6%;
+        padding: 2px;
+        padding-left: 5px;
+
+        div {
+          width: 30px;
+          height: 30px;
+          overflow: hidden;
+          border-radius: 50%;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+
+    .accordion-content {
+      position: relative;
+      z-index: -1;
+      margin-top: -16px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: all .3s cubic-bezier(.25, .1, .25, 1);
+      border-radius: 0px 0px 6px 6px;
+      background-color: darken($theme-light, 5%);
+
+      &.collapse {
+        height: 0;
+        opacity: 0;
+      }
+    }
+
+    .empty-state-wrapper {
+      margin-top: 21px;
+
+      .empty-state {
+        font-size: $theme-font-normal;
+        background-color: $theme-grey-x-medium;
+        border-radius: 6px;
+        color: $theme-dark;
+        padding: 10px;
+        margin-top: 6px;
+        height: 17px;
+        padding-left: 20px;
+
+        &.dark {
+          background-color: $theme-blue;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+}
+
+div.acc-table:last-child {
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  div.acc-table {
+    min-width: 660px !important;
+
+    &.dark {
+      min-width: auto !important;
+    }
+
+    &.empty-state {
+      min-width: auto !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  div.acc-table {
+    min-width: auto !important;
+  }
+
+  div.accordion-table {
+    min-width: auto !important;
+  }
+
+  .table-not-mobile {
+    display: none;
+  }
+}

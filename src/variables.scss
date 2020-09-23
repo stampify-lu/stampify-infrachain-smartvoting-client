@@ -1,0 +1,45 @@
+$theme-light: #ffffff;
+$theme-dark: #000000;
+$theme-green: #17bebb;
+$theme-blue: #256eff;
+$theme-red: #ff495c;
+$theme-background: #f9fbfc;
+$theme-stampify:  #46237a;
+
+:root {
+  --theme-palette1: #46237a;
+  --theme-palette2: #ffffff;
+  --theme-palette3: #000000;
+}
+
+$theme-deep-red: darken($theme-red, 30%);
+$theme-hover-red: darken($theme-red, 40%);
+$theme-middle-red: darken($theme-red, 60%);
+$theme-hover-green: darken($theme-blue, 15%);
+$theme-grey: darken($theme-light, 70%);
+$theme-blue-dark: darken($theme-blue, 15%);
+$theme-blue-less-light: lighten($theme-blue, 15%);
+$theme-blue-more-light: lighten($theme-blue, 40%);
+$theme-grey-dark: darken($theme-grey, 15%);
+$theme-grey-less-light: darken($theme-light, 7.5%);
+$theme-grey-light: darken($theme-light, 15%);
+$theme-grey-medium: darken($theme-light, 25%);
+$theme-grey-x-medium: darken($theme-light, 40%);
+
+$theme-font-xx-small: 6px;
+$theme-font-x-small: 8px;
+$theme-font-small: 9px;
+$theme-font-medium: 10px;
+$theme-font-x-medium: 11px;
+$theme-font-normal: 12px;
+$theme-font-x-normal: 13px;
+$theme-font-xx-normal: 14px;
+$theme-font-large: 15px;
+$theme-font-x-large: 18px;
+$theme-font-xx-large: 20px;
+
+$line-height-1: 1;
+$line-height-reduced: 0.95;
+
+$box-shadow: 1px 2px 3px 0px var(--theme-palette3);
+$box-shadow-superlight: 0 0px 0px 1px rgba(60, 64, 0, 0.1);

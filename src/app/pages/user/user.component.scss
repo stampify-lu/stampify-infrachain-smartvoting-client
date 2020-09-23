@@ -1,0 +1,18 @@
+.candidate{
+    width: 150px;
+    height: 200px;
+    
+
+    &.candidate-one{
+        background: url("../../../assets/images/candidat1.jpg") no-repeat center;
+        background-size: auto 100%;
+    }
+    &.candidate-two{
+        background: url("../../../assets/images/candidat2.jpg") no-repeat center;
+        background-size: auto 100%;
+    }
+    &.candidate-three{
+        background: url("../../../assets/images/candidat3.jpg") no-repeat center;
+        background-size: auto 100%;
+    }
+}

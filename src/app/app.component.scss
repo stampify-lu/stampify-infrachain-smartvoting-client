@@ -1,0 +1,12 @@
+@import '~src/variables';
+
+app-root {
+  display: block;
+  height: 100%;
+}
+
+message-bar {
+  position: relative;
+  z-index: 1000;
+  display: block;
+}

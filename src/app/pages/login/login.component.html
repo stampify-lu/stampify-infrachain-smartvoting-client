@@ -1,0 +1,33 @@
+<div class="login-wrapper layout">
+  <div class="container flex-container flex-column">
+    <div class="title-section"></div>
+    <div class="flex-container">
+      <div class="column1">
+        <ng-container >
+            <div class="login-container">
+              <div class="input-wrapper">
+                <label for="account-name">Username</label>
+                <input type="email" id="account-name" [(ngModel)]="accountName"
+                                    (keydown)="($event.keyCode === 13 && loginWeak()) || true" />
+              </div>
+              <div class="input-wrapper">
+                <label for="pwd">Password</label>
+                <input type="password" id="pwd" [(ngModel)]="password"
+                                       (keydown)="($event.keyCode === 13 && loginWeak()) || true" />
+              </div>
+              <div class="input-wrapper">
+                <label for="pwd">Private Key</label>
+                <input type="password" id="pwd" [(ngModel)]="privateKey"
+                                       (keydown)="($event.keyCode === 13 && loginWeak()) || true" />
+              </div>
+            </div>
+            <div>
+              <button (click)="loginWeak()" [disabled]="!accountName || !password">
+                Sign In
+              </button>
+            </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
