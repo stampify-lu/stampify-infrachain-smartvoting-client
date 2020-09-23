@@ -21,11 +21,11 @@ import {ToolbarComponent} from './toolbar/toolbar.component';
   ],
   exports: [
     ToolbarComponent,
-    MessageBarComponent
+    MessageBarComponent,
   ],
   declarations: [
     ToolbarComponent,
-    MessageBarComponent
+    MessageBarComponent,
   ],
   entryComponents: []
 })
