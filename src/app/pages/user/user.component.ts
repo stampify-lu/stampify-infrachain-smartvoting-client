@@ -19,32 +19,30 @@ import { User } from 'src/app/shared/models/user';
     vote: Vote;
     selectedVotingCampagn : Meeting;
     constructor(public apiService: ApiService) {
-        this.apiService.getOwnMeetings(undefined, undefined, undefined, undefined, "timeEnd", "DESC").then(campaigns => {
+        this.apiService.getOwnMeetings(undefined, undefined, undefined, undefined, 'timeEnd', 'DESC').then(campaigns => {
             this.campagns = campaigns.result;
-        }, err=> this.apiService.messageBar.action = {message: err});
+        }, err => this.apiService.messageBar.action = {message: err});
     }
 
-
-
-    selectCampaign(campagn : Meeting){
+    selectCampaign(campagn : Meeting) {
         this.campagn = campagn;
         this.step++;
     }
 
-    confirm(){
+    confirm() {
         this.apiService.confirmParticipation(this.campagn);
         this.step++;
     }
 
-    confirmParticipation(){
+    confirmParticipation() {
         this.apiService.confirmParticipation(this.campagn);
     }
 
-    registerVote(vote : Vote){
+    registerVote(vote : Vote) {
         this.apiService.registerVote(this.campagn, vote);
     }
 
-    checkMyVote(){
+    checkMyVote() {
         this.apiService.checkMyVote(this.campagn);
     }
   }

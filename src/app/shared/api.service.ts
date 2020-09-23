@@ -1,20 +1,18 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {pki} from 'node-forge';
 import {take, timeout} from 'rxjs/operators';
+import * as Web3 from 'web3';
 import {environment} from '../../environments/environment';
 import {Application} from './application.service';
 import {BackendMessage, Results} from './models/backend-message';
 import {Meeting, Vote} from './models/meeting';
 import {User} from './models/user';
-import {pki} from 'node-forge';
-import * as Web3 from 'web3';
-
 
 @Injectable()
 export class ApiService extends Application {
 
-  
   get jwt() {
     return this.jwtToken;
   }
@@ -38,10 +36,10 @@ export class ApiService extends Application {
     }
     return options;
   }
+  protected web3: Web3.default;
+  infoPromise: Promise<User>;
 
   private jwtToken: string;
-  infoPromise: Promise<User>;
-  protected web3: Web3.default;
   private userBCPublicKey: string;
 
   constructor(private http: HttpClient, private router: Router) {
@@ -100,6 +98,7 @@ export class ApiService extends Application {
       }, this.httpOptions)
         .pipe(timeout(20000)).pipe(take(1)).subscribe((res: Results<{jwt: string}>) => {
           this.processMessages(res);
+          this.jwt = res.result.jwt;
           resolve(res.result.jwt);
         }, this.makeReject(reject));
     });
@@ -137,9 +136,9 @@ export class ApiService extends Application {
   }
 
   getOwnMeetings(minDate?: Date,
-              search?: string, offset?: number, limit?: number,
-              orderColumn?: 'id' | 'name' | 'timeBegin' | 'timeEnd',
-              orderAsc?: 'ASC' | 'DESC'): Promise<Results<Meeting[]>> {
+                 search?: string, offset?: number, limit?: number,
+                 orderColumn?: 'id' | 'name' | 'timeBegin' | 'timeEnd',
+                 orderAsc?: 'ASC' | 'DESC'): Promise<Results<Meeting[]>> {
     return new Promise((resolve, reject) => {
       this.http.get<Results<Meeting[]>>(environment.baseUri + 'meetings/own/query?1=1'
         + (minDate ? '&minDate=' + minDate.getTime() : '')
@@ -158,8 +157,8 @@ export class ApiService extends Application {
       this.http.post<Results<number>>(environment.baseUri + 'meetings', {
         name: meeting.name,
         time_begin: new Date(meeting.timeBegin).getTime(),
-        time_end: new Date(meeting.timeEnd).getTime(),
-        
+        time_end: new Date(meeting.timeEnd).getTime()
+
       }, this.httpOptions).pipe(timeout(20000)).pipe(take(1)).subscribe(res => resolve(res.result), this.makeReject(reject));
     });
   }
@@ -180,14 +179,14 @@ export class ApiService extends Application {
     });
   }
 
-  confirmParticipation(meeting: Meeting): Promise<undefined>{
+  confirmParticipation(meeting: Meeting): Promise<undefined> {
     const Meeting = new this.web3.eth.Contract(JSON.parse(this.userInfo.server.contractsAbi.Meeting));
     Meeting.options.address = meeting.contractAddress;
     return Meeting.methods.set_vote(this.web3.utils.fromAscii((<any>pki.certificateFromPem(this.userInfo.server.contractVoteCypher)
       .publicKey).encrypt(String(Vote.BLANK)))).send({from: this.userBCPublicKey, gas: 1500000, gasPrice: 2000000000});
   }
 
-  registerVote(meeting: Meeting, vote: Vote): Promise<undefined>{
+  registerVote(meeting: Meeting, vote: Vote): Promise<undefined> {
     const Meeting = new this.web3.eth.Contract(JSON.parse(this.userInfo.server.contractsAbi.Meeting));
     Meeting.options.address = meeting.contractAddress;
     return Meeting.methods.set_vote(this.web3.utils.fromAscii((<any>pki.certificateFromPem(this.userInfo.server.contractVoteCypher)
@@ -233,6 +232,3 @@ export class ApiService extends Application {
       }
     };
   }
-
-
-}

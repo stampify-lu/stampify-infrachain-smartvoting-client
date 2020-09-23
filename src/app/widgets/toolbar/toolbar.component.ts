@@ -51,7 +51,6 @@ export class ToolbarComponent extends LoginComponent {
     this.apiService.signOut().then(() => undefined, err => this.apiService.messageBar.action = {message: err});
   }
 
-
   globalDismiss(event: any) {
     if(this.showLogin) {
       if((!document.querySelector('.second-line').contains(event.target)

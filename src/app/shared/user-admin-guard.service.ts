@@ -11,8 +11,8 @@ export class UserAdminGuardService implements CanActivate {
 
   canActivate(_: ActivatedRouteSnapshot, __: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.apiService.infoPromise.then(user => {
-      if(user.role === UserPlatformRole.CUSTOMER) return true;
-      this.router.navigate(['/profile']);
+      if(user.role === UserPlatformRole.ADMIN) return true;
+      this.router.navigate(['/user']);
       return false;
     });
   }
