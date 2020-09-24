@@ -1,7 +1,9 @@
 import {Component, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import { UserAdminGuardService } from 'src/app/shared/user-admin-guard.service';
 import {LoginComponent} from '../../pages/login/login.component';
 import {ApiService} from '../../shared/api.service';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-toolbar',
@@ -20,6 +22,7 @@ export class ToolbarComponent extends LoginComponent {
 
   secondLineVisible = false;
   unreadCount = 0;
+  user : User;
 
   constructor(public apiService: ApiService, public route: ActivatedRoute, public router: Router) {
     super(apiService, router, route);

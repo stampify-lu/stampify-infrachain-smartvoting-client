@@ -17,20 +17,18 @@
     <div class="second-line layout">
       <div class="container">
         <div class="left" >
-          
+          <div class="userInfo" *ngIf="apiService.userInfo"><i class="material-icons">person</i> {{apiService.userInfo.firstName}} {{apiService.userInfo.lastName}}</div>
 
         </div>
         <div class="center">
+          
           <a [routerLink]="['/admin']" *ngIf="apiService.userInfo && apiService.userInfo.role === 1">Admin</a>
-          <a [routerLink]="['/user']" *ngIf="apiService.userInfo">Campaigns</a>
+          <a [routerLink]="['/user']" *ngIf="apiService.userInfo">Vote</a>
           <a [routerLink]="['/login']" *ngIf="!apiService.userInfo">Login</a>
+         
           <a (click)="logout()" [routerLink]="['/login']" *ngIf="apiService.userInfo">Logout</a>
         <div class="right">
-         
-         
         </div>
-
-       
         </div>
       </div>
     </div>    

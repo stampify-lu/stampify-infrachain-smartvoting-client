@@ -32,9 +32,10 @@
                 <button (click)="confirmParticipation()">I confirm</button>
             </div>
             <div id="loadingDiv"  *ngIf="hasConfirm">
-                <div>
-                    <div>Your answer is sent to the blockchain.</div>
-                    <span>Please wait...</span>
+                <div class="container-patience">
+                    <div>Your answer is sent to the blockchain. <br/>
+                    May the patience be with you...
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,8 +62,11 @@
 
             <div id="loadingDiv"  *ngIf="hasVoted">
                 <div>
-                    <div>Your answer is sent to the blockchain.</div>
-                    <span>Please wait...</span>
+                    <div class="container-patience">
+                        <div>Your answer is sent to the blockchain. <br/>
+                        May the patience be with you again...
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
