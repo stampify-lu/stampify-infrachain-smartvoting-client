@@ -88,10 +88,14 @@
     margin: 35vh auto;
     text-align: center;
     width: max-content;
+    font-weight: bolder;
+    padding: 10px;
     @media (max-width: 800px) {
-    margin: 80% auto;
+        background-color: white;
+        margin: 20vh auto;
     }
 }
+
 #loadingDiv{
     position:fixed;
     top:0px;
