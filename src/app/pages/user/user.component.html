@@ -1,16 +1,19 @@
 <div class="user-wrapper layout">
     <div class="container user">
         <div *ngIf="step === 1">
-            <div class="title">Select a campagn</div>
+            <div class="title">Stand for your rights and accomplish your citizen duty. (1/4)</div>
+            <div class="subtitle">Time to vote, select the right one.</div>
             <div class="content">
                 <mat-selection-list #campagn [multiple]="false">
                     <mat-list-option *ngFor="let campagn of campagns" [value]="campagn" [disabled]="!checkAvailability(campagn)">
-                        {{campagn.name}}
+                        {{campagn.name}} <br />
+                        <div class="option-dates">Opening on {{campagn.timeBegin | date:'dd/MM/yyyy HH:mm'}} </div>
+                        <div class="option-dates">Closing on {{campagn.timeEnd  | date:'dd/MM/yyyy HH:mm' }}</div>
                     </mat-list-option>
                 </mat-selection-list>
-                <p>
-                    Campagn selected: {{campagn.selectedOptions.selected[0]?.value.name}}
-                </p>
+                <div class="campaign-selected" *ngIf="campagn.selectedOptions.selected[0]">
+                    Your choice : {{campagn.selectedOptions.selected[0]?.value.name}}
+                </div>
             </div>
             <div class="actions">
                 <button (click)="selectCampaign(campagn.selectedOptions.selected[0]?.value)" *ngIf="campagn.selectedOptions.selected[0]" >Next</button>
@@ -20,11 +23,10 @@
 
         <div *ngIf="step === 2">
             <div class="title">
-                Confirm your presence
+                Your participation confirm you will. (2/4)
             </div>
-            <div class="content">
-                    I confirm my participation to the vote of {{this.campagn.name}}
-            </div>
+            <div class="subtitle">Don't underestimate the force of your vote.</div>
+        
             <div class="actions">
                 <button (click)="confirm()">I confirm</button>
             </div>
@@ -33,38 +35,63 @@
 
         <div *ngIf="step === 3">
             <div class="title">
-                Please make your choice
+                Time to act, take the vote. (3/4)
             </div>
+            <div class="subtitle">Immutable will be your action.</div>
             <div class="content">  
-            Social elections take place every 5 years. 
-            On this occasion, the employees elect members of the staff delegation in their company : 
-            <div>
+                <p class="descr">
+                    Should the force banish Dark Vador once for all ?
+                </p>
+                <div>
                 <div class="candidate candidate-one"></div>
-                Do you support this candidate ?
-                <button (click)="registerVote(0)">For</button>
-                <button (click)="registerVote(1)">Against</button>
-                <button (click)="registerVote(3)">Abstain</button>
+               
             </div>
-        </div>
-        <div id="loadingDiv" style="display:none;">
+            <div class="actions">
+                    <button (click)="registerVote(0)">For</button>
+                    <button (click)="registerVote(1)">Against</button>
+                    <button (click)="registerVote(3)">Abstain</button>
+            </div>
+            </div>
+        <div id="loadingDiv" style="display: none;">
             <div>
                 <span>Please wait...</span>
             </div>
+        </div>
         </div>
 
 
         <div *ngIf="step === 4">
             <div class="title">
-                Thank you for your participation
+                Dear citizen, you've completed your duty.
             </div>
-            <div class="content">
-                To register your vote, we used the public blockchain. <br />
-                At this last step, you can check if your vote has been correctly registered. <br />
-                Do you want to check ? 
+            <div class="subtitle">Secrecy is sealed by the Force.</div>
+            <div class="content descr">
+                Your vote is now part of the Luxembourg intergalactic public blockchain. <br />
+
+                <div class="campaign-selected" *ngIf="hash">
+                    Here is your hash : {{hash}}
+                </div>
             </div>
             <div class="actions">
-                <button (click)="checkMyVotes()">Yes</button>
-                <button (click)="next()">No</button>
+                <button (click)="seeResults()">See results</button>
+            </div>
+        </div>
+
+        <div *ngIf="step === 5">
+            <div class="title">
+                Results
+            </div>
+            <div class="subtitle">The Force has spoken.</div>
+            <div class="content descr">
+                 <br />
+
+                <div class="campaign-selected" *ngIf="hash">
+                    You have lost Dark Vador, 
+                    Yo win Dark Vador
+                </div>
+            </div>
+            <div class="actions">
+                <button (click)="refreshResults()">Refresh</button>
             </div>
         </div>
     </div>

@@ -196,17 +196,18 @@ export class ApiService extends Application {
       .publicKey).encrypt(String(vote)))).send({from: this.userBCPublicKey, gas: 1500000, gasPrice: 2000000000});
   }
 
-  checkMyVote(meeting: Meeting): Promise<boolean> {
+  checkMyVote(meeting: Meeting): Promise<string> {
     const Meeting = new this.web3.eth.Contract(JSON.parse(this.userInfo.server.contractsAbi.Meeting));
     Meeting.options.address = meeting.contractAddress;
     return Meeting.methods.get_vote_cypher(this.userBCPublicKey).call({from: this.userBCPublicKey})
       .then((record: string) => {
         if(!record) return false;
         const utf8record = this.web3.utils.toAscii(record);
-        if(!utf8record || utf8record.replace(/0/g, '').length < 3) return false;
-        return true;
+        if(!utf8record || utf8record.replace(/0/g, '').length < 3) return "";
+        return utf8record;
       });
   }
+
 
   private processMessages(msg: BackendMessage) {
     if(!msg) return;

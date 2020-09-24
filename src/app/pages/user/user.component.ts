@@ -16,6 +16,7 @@ import { User } from 'src/app/shared/models/user';
     campagns : Meeting[];
     step : number = 1;
     vote: Vote;
+    hash: string;
     constructor(public apiService: ApiService) {
         this.apiService.getOwnMeetings(undefined, undefined, undefined, undefined, 'timeEnd', 'DESC').then(campaigns => {
             this.campagns = campaigns.result;
@@ -48,14 +49,18 @@ import { User } from 'src/app/shared/models/user';
     registerVote(vote : Vote){
 
         this.apiService.registerVote(this.campagn, vote);
-        setTimeout(() => {
-            document.getElementById('loadingDiv').style.display = 'block';
-          }, 4350);
-        this.step++;
+        document.getElementById('loadingDiv').setAttribute("style", "display:block");
+        this.apiService.checkMyVote(this.campagn).then(hash => {
+            if (hash)
+            this.hash = hash;
+            document.getElementById('loadingDiv').setAttribute("style", "display:none");
+
+        });
+        this.next();
+
     }
 
-    checkMyVote() {
-        this.apiService.checkMyVote(this.campagn);
-        this.step++;
+    refreshResults() {
+         
     }
   }

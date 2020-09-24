@@ -1,37 +1,104 @@
-.candidate{
-    width: 150px;
-    height: 200px;
+
+.user-wrapper{
+    width: 100%;
+    margin: 0px auto;
+
+    .container{
+        width:30%;
+        margin: 0px auto;
+        .title{
+            font-weight: bolder;
+            font-size: 20px;
+            padding-bottom: 5px;
+
+        }
+        .subtitle{
+            font-size: 17px;
+            padding-bottom: 25px;
+        }
+
     
+        .campaign-selected{
+            margin : 25px;
+            padding: 25px;
+            border-radius: 25px;
+            border: 3px dashed yellow;
+            background: black;
+            color: yellow;
+            text-transform: uppercase;
+            font-weight: bolder;
+        }
+
+        
+
+        .actions{
+            text-align: center;
+
+            button{
+                border: none;
+                text-transform: uppercase;
+                background-color: black;
+                color: yellow;
+                margin : 2px;
+                &:hover{
+                    filter: brightness(150%);
+                }
+            }
+            
+        }
+    }
+
+       
+        .mat-list-base .mat-list-item {
+            height: 80px;
+
+        .mat-list-text , .mat-list-base .mat-list-option .mat-list-text {
+            padding: 20px;
+            .option-dates{
+                padding-left: 20px;
+                font-size: 14px;
+
+        }
+    }
+    }
+
+
+.candidate{
+    width: 250px;
+    height: 166px;
+    margin: 0 auto;
+    margin-bottom: 25px;
 
     &.candidate-one{
-        background: url("../../../assets/images/candidat1.jpg") no-repeat center;
-        background-size: auto 100%;
-    }
-    &.candidate-two{
-        background: url("../../../assets/images/candidat2.jpg") no-repeat center;
-        background-size: auto 100%;
-    }
-    &.candidate-three{
-        background: url("../../../assets/images/candidat3.jpg") no-repeat center;
+        background: url("../../../assets/images/dark.jpg") no-repeat center;
         background-size: auto 100%;
     }
 
 
 
-    #loadingDiv{
-        position:fixed;
-        top:0px;
-        right:0px;
-        width:100%;
-        height:100%;
-        background-color:#666;
-        background-image:url('../../../assets/images/loading.gif');
-        background-repeat:no-repeat;
-        background-position:center;
-        z-index:10000000;
-        opacity: 0.4;
-        filter: alpha(opacity=40); /* For IE8 and earlier */
-      }
+    
 
 
+}
+
+#loadingDiv{
+    position:fixed;
+    top:0px;
+    right:0px;
+    width:100%;
+    height:100%;
+    background-color:#666;
+    background-image:url('../../../assets/images/loading.gif');
+    background-repeat:no-repeat;
+    background-position:center;
+    z-index:10000000;
+  }
+
+  .mat-list-item-disabled {
+      opacity: 0.3;
+  }
+}
+
+.descr{
+        padding-bottom: 25px;    
 }
