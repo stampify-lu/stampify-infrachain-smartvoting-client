@@ -5,7 +5,7 @@
             <div class="content">
                 <mat-selection-list #campagn [multiple]="false">
                     <mat-list-option *ngFor="let campagn of campagns" [value]="campagn" [disabled]="!checkAvailability(campagn)">
-                        {{campagn.name}}
+                        {{campagn.name}} - {{campagn.timeBegin | date:'yyyy-MM-dd HH:mm'}} - {{campagn.timeEnd | date:'yyyy-MM-dd HH:mm'}} - {{getCampagnResult(campagn)}}
                     </mat-list-option>
                 </mat-selection-list>
                 <p>

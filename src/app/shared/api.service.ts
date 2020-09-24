@@ -196,6 +196,24 @@ export class ApiService extends Application {
       .publicKey).encrypt(String(vote)))).send({from: this.userBCPublicKey, gas: 1500000, gasPrice: 2000000000});
   }
 
+  getVotesFor(meeting: Meeting): Promise<undefined> {
+    const Meeting = new this.web3.eth.Contract(JSON.parse(this.userInfo.server.contractsAbi.Meeting));
+    Meeting.options.address = meeting.contractAddress;
+    return Meeting.methods.votes_for().call({from: this.userBCPublicKey});
+  }
+
+  getVotesAgainst(meeting: Meeting): Promise<undefined> {
+    const Meeting = new this.web3.eth.Contract(JSON.parse(this.userInfo.server.contractsAbi.Meeting));
+    Meeting.options.address = meeting.contractAddress;
+    return Meeting.methods.votes_against().call({from: this.userBCPublicKey});
+  }
+
+  getVotesEmpty(meeting: Meeting): Promise<undefined> {
+    const Meeting = new this.web3.eth.Contract(JSON.parse(this.userInfo.server.contractsAbi.Meeting));
+    Meeting.options.address = meeting.contractAddress;
+    return Meeting.methods.votes_empty().call({from: this.userBCPublicKey});
+  }
+
   checkMyVote(meeting: Meeting): Promise<boolean> {
     const Meeting = new this.web3.eth.Contract(JSON.parse(this.userInfo.server.contractsAbi.Meeting));
     Meeting.options.address = meeting.contractAddress;
