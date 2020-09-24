@@ -30,7 +30,7 @@ import { User } from 'src/app/shared/models/user';
     }
 
     getCampagnResult(campagn: Meeting) {
-        if(new Date() < new Date(campagn.timeEnd)) return 'Unknown yet';
+        if(new Date() < new Date(campagn.timeEnd) && !campagn.timeFrozen) return 'Unknown yet';
         if(!this.resultPromises[campagn.id]) {
             this.resultPromises[campagn.id] = Promise.all([
                 this.apiService.getVotesFor(campagn),
