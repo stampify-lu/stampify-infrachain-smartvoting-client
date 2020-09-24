@@ -1,0 +1,124 @@
+    WARNING: Zone.js does not support native async/await in ES2017.
+    These blocks are not intercepted by zone.js and will not triggering change detection.
+    See: https://github.com/angular/zone.js/pull/1140 for more information.
+WARNING: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disableHostCheck" if that's the
+case.
+
+chunk {main} main.js, main.js.map (main) 1.82 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 123 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 6.15 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 205 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 340 kB [initial] [rendered]
+Date: 2020-09-23T18:02:55.572Z - Hash: c73f27c5577cfd3fa6aa - Time: 9516ms
+
+ERROR in src/app/pages/admin/admin.component.ts:48:1 - error TS1005: ',' expected.
+
+48 ar.action = {message: err});
+   ~~
+src/app/shared/api.service.ts:235:1 - error TS1005: '}' expected.
+
+235 
+    
+src/app/shared/models/user.ts:2:25 - error TS1005: 'from' expected.
+
+2 import {ModelInterface} './information';
+                          ~~~~~~~~~~~~~~~
+
+** Angular Live Development Server is listening on 0.0.0.0:4200, open your browser on http://localhost:4200/ **
+
+Date: 2020-09-23T18:04:11.617Z - Hash: 0c5cffe8639b7a8caefc
+5 unchanged chunks
+
+Time: 385ms
+
+ERROR in src/app/shared/api.service.ts:235:1 - error TS1005: '}' expected.
+
+235 
+    
+
+    WARNING: Zone.js does not support native async/await in ES2017.
+    These blocks are not intercepted by zone.js and will not triggering change detection.
+    See: https://github.com/angular/zone.js/pull/1140 for more information.
+An unhandled exception occurred: Port 4200 is already in use. Use '--port' to specify a different port.
+See "/tmp/ng-WB0qwV/angular-errors.log" for further details.
+    WARNING: Zone.js does not support native async/await in ES2017.
+    These blocks are not intercepted by zone.js and will not triggering change detection.
+    See: https://github.com/angular/zone.js/pull/1140 for more information.
+WARNING: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disableHostCheck" if that's the
+case.
+
+chunk {main} main.js, main.js.map (main) 150 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 959 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 6.15 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 205 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 7.1 MB [initial] [rendered]
+Date: 2020-09-23T18:14:50.058Z - Hash: 8bfe8f7e18d92008fbca - Time: 23215ms
+
+WARNING in /home/ubuntu/stampify-infrachain-smartvoting-client/src/app/shared/api.service.ts depends on 'node-forge'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+** Angular Live Development Server is listening on 0.0.0.0:4200, open your browser on http://localhost:4200/ **
+: Compiled successfully.
+
+Date: 2020-09-24T06:15:30.886Z - Hash: ce00d526c4d28670d061
+3 unchanged chunks
+chunk {main} main.js, main.js.map (main) 154 kB [initial] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 192 kB [initial] [rendered]
+Time: 4307ms
+: Compiled successfully.
+    WARNING: Zone.js does not support native async/await in ES2017.
+    These blocks are not intercepted by zone.js and will not triggering change detection.
+    See: https://github.com/angular/zone.js/pull/1140 for more information.
+WARNING: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disableHostCheck" if that's the
+case.
+
+chunk {main} main.js, main.js.map (main) 154 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 959 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 6.15 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 192 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 7.1 MB [initial] [rendered]
+Date: 2020-09-24T06:16:46.509Z - Hash: 47fde70a8ff02567302f - Time: 24155ms
+
+WARNING in /home/ubuntu/stampify-infrachain-smartvoting-client/src/app/shared/api.service.ts depends on 'node-forge'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+** Angular Live Development Server is listening on 0.0.0.0:4200, open your browser on http://localhost:4200/ **
+: Compiled successfully.
+
+Date: 2020-09-24T07:17:55.022Z - Hash: 4cfb639bee6638c7c9bc
+4 unchanged chunks
+chunk {main} main.js, main.js.map (main) 154 kB [initial] [rendered]
+Time: 4932ms
+
+WARNING in AngularCompilerPlugin: Forked Type Checker exited unexpectedly. Falling back to type checking on main thread.
+: Compiled successfully.
+
+Date: 2020-09-24T08:18:06.350Z - Hash: ab96d3b981e09756a770
+4 unchanged chunks
+chunk {main} main.js, main.js.map (main) 161 kB [initial] [rendered]
+Time: 3340ms
+
+ERROR in src/app/widgets/toolbar/toolbar.component.ts:3:1 - error TS6133: 'UserAdminGuardService' is declared but its value is never read.
+
+3 import { UserAdminGuardService } from 'src/app/shared/user-admin-guard.service';
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Date: 2020-09-24T08:18:48.492Z - Hash: 6a847e6e481fdc7b86dd
+5 unchanged chunks
+
+Time: 3454ms
+: Compiled successfully.
