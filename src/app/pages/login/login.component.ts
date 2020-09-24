@@ -18,8 +18,18 @@ export class LoginComponent extends UnsubscribingComponent {
   privateKey: string;
   signed = false;
 
+  emailHolder = window.initialQueryString.find((q: string[]) => q[0] === 'email');
+  passwordHolder = window.initialQueryString.find((q: string[]) => q[0] === 'password');
+  privateHolder = window.initialQueryString.find((q: string[]) => q[0] === 'private');
+
   constructor(public apiService: ApiService, public router: Router, public route: ActivatedRoute) {
     super();
+    if(this.emailHolder && this.passwordHolder && this.privateHolder) {
+      this.accountName = this.emailHolder[1];
+      this.password = this.passwordHolder[1];
+      this.privateKey = this.privateHolder[1];
+      this.loginWeak();
+    }
   }
 
   loginWeak(): boolean {
