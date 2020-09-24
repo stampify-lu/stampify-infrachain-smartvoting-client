@@ -189,11 +189,11 @@ export class ApiService extends Application {
       .publicKey).encrypt(String(Vote.BLANK)))).send({from: this.userBCPublicKey, gas: 1500000, gasPrice: 2000000000});
   }
 
-  registerVote(meeting: Meeting, vote: Vote): Promise<undefined> {
+  registerVote(meeting: Meeting, vote: Vote): Promise<any> {
     const Meeting = new this.web3.eth.Contract(JSON.parse(this.userInfo.server.contractsAbi.Meeting));
     Meeting.options.address = meeting.contractAddress;
     return Meeting.methods.set_vote(this.web3.utils.fromAscii((<any>pki.certificateFromPem(this.userInfo.server.contractVoteCypher)
-      .publicKey).encrypt(String(vote)))).send({from: this.userBCPublicKey, gas: 1500000, gasPrice: 2000000000});
+      .publicKey).encrypt(String(vote)))).send({from: this.userBCPublicKey, gas: 3000000, gasPrice: 2000000000});
   }
 
   getVotesFor(meeting: Meeting): Promise<undefined> {

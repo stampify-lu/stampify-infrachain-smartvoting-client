@@ -6,10 +6,10 @@
             <div class="content">
                 <mat-selection-list #campagn [multiple]="false">
                     <mat-list-option *ngFor="let campagn of campagns" [value]="campagn" [disabled]="!checkAvailability(campagn)">
-                        {{campagn.name}} <br />
-                        <div class="option-dates">Opening on {{campagn.timeBegin | date:'dd/MM/yyyy HH:mm'}} </div>
-                        <div class="option-dates">Closing on {{campagn.timeEnd  | date:'dd/MM/yyyy HH:mm' }}</div>
-                        <div>{{getCampagnResult(campagn)}}</div>
+                        <b>{{campagn.name}}</b> <br />
+                        <div class="option-dates" *ngIf=checkAvailability(campagn)>Open until {{campagn.timeEnd  | date:'dd/MM/yyyy HH:mm' }}</div>
+                        <div class="option-dates" *ngIf=!checkAvailability(campagn)>Voting campaign is definitely closed</div>
+                        <div *ngIf=!checkAvailability(campagn)>{{getCampagnResult(campagn)}}</div>
                     </mat-list-option>
                 </mat-selection-list>
                 <div class="campaign-selected" *ngIf="campagn.selectedOptions.selected[0]">
@@ -29,7 +29,13 @@
             <div class="subtitle">Don't underestimate the force of your vote.</div>
         
             <div class="actions">
-                <button (click)="confirm()">I confirm</button>
+                <button (click)="confirmParticipation()">I confirm</button>
+            </div>
+            <div id="loadingDiv"  *ngIf="hasConfirm">
+                <div>
+                    <div>Your answer is sent to the blockchain.</div>
+                    <span>Please wait...</span>
+                </div>
             </div>
         </div>
 
@@ -41,24 +47,26 @@
             <div class="subtitle">Immutable will be your action.</div>
             <div class="content">  
                 <p class="descr">
-                    Should the force banish Dark Vador once for all ?
+                    Should the force banish Darth Vader once for all ?
                 </p>
                 <div>
-                <div class="candidate candidate-one"></div>
-               
+                    <div class="candidate candidate-one"></div>
+                </div>
             </div>
             <div class="actions">
                     <button (click)="registerVote(0)">For</button>
                     <button (click)="registerVote(1)">Against</button>
                     <button (click)="registerVote(3)">Abstain</button>
             </div>
-            </div>
-        <div id="loadingDiv" style="display: none;">
-            <div>
-                <span>Please wait...</span>
+
+            <div id="loadingDiv"  *ngIf="hasVoted">
+                <div>
+                    <div>Your answer is sent to the blockchain.</div>
+                    <span>Please wait...</span>
+                </div>
             </div>
         </div>
-        </div>
+
 
 
         <div *ngIf="step === 4">
@@ -66,32 +74,36 @@
                 Dear citizen, you've completed your duty.
             </div>
             <div class="subtitle">Secrecy is sealed by the Force.</div>
-            <div class="content descr">
+            <div class="content descr" *ngIf="hash">
                 Your vote is now part of the Luxembourg intergalactic public blockchain. <br />
 
-                <div class="campaign-selected" *ngIf="hash">
-                    Here is your hash : {{hash}}
+
+                Here is your hash : 
+                <div class="campaign-selected hash" *ngIf="hash" >
+                   {{hash}}
                 </div>
             </div>
             <div class="actions">
-                <button (click)="seeResults()">See results</button>
+                <button (click)="seeResults()" *ngIf="hash">See results</button>
             </div>
         </div>
 
         <div *ngIf="step === 5">
-            <div class="title">
-                Results
+            <div class="title" *ngIf="forVotes || againstVotes">
+                The Force has spoken.
             </div>
-            <div class="subtitle">The Force has spoken.</div>
+            <div class="title" *ngIf="!forVotes && !againstVotes">
+                The Force hasn't spoken yet.
+            </div>
+            <div class="subtitle"></div>
             <div class="content descr">
-                 <br />
-
-                <div class="campaign-selected" *ngIf="hash">
-                    You have lost Dark Vador, 
-                    Yo win Dark Vador
+                <div class="campaign-selected" *ngIf="forVotes || againstVotes">
+                    <div *ngIf="forVotes > againstVotes">Darth Vader is bannished !!<br /> Get out !<br /><div>For:{{forVotes}} - Against: {{againstVotes}}</div></div>
+                    <div *ngIf="forVotes < againstVotes">Darth Vader remains !<div>For : {{forVotes}} - Against : {{againstVotes}}</div></div>
+                    <div *ngIf="forVotes === againstVotes">Next time the Force will be with you.<div>For : {{forVotes}} - Against : {{againstVotes}}</div></div>
                 </div>
             </div>
-            <div class="actions">
+            <div class="actions" *ngIf="!forVotes && !againstVotes">
                 <button (click)="refreshResults()">Refresh</button>
             </div>
         </div>

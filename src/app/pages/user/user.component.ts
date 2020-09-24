@@ -17,6 +17,10 @@ import { User } from 'src/app/shared/models/user';
     step : number = 1;
     vote: Vote;
     hash: string;
+    hasVoted : boolean = false;
+    hasConfirm : boolean = false;
+    forVotes : number = 0;
+    againstVotes : number = 0;
     resultPromises: {[id: number]: Promise<any>} = {};
     result: {[id: number]: [number, number, number]} = {};
 
@@ -40,7 +44,11 @@ import { User } from 'src/app/shared/models/user';
             ]).then(v => this.result[campagn.id] = v);
             return 'Unknown yet';
         } else if(this.result[campagn.id]) {
-            return 'For: ' + this.result[campagn.id][0] + ', Against: ' + this.result[campagn.id][1] + ', Invalid: '  + this.result[campagn.id][2];
+            if (this.campagn && campagn.id === this.campagn.id){
+                this.forVotes = this.result[campagn.id][0];
+                this.againstVotes = this.result[campagn.id][1];
+            }
+            return 'For: ' + this.result[campagn.id][0] + ', Against: ' + this.result[campagn.id][1] + ', Invalid or abstain: '  + this.result[campagn.id][2];
         }
         return 'Unknown yet';
     }
@@ -50,33 +58,31 @@ import { User } from 'src/app/shared/models/user';
         this.step++;
     }
 
-    confirm() {
-        this.apiService.confirmParticipation(this.campagn);
-        this.step++;
-    }
-
     next(){
         this.step++;
     }
 
     confirmParticipation(){
-        this.apiService.confirmParticipation(this.campagn);
+        this.hasConfirm = true;
+        this.apiService.confirmParticipation(this.campagn).then(() =>{
+            this.step++;
+        });
     }
 
     registerVote(vote : Vote){
-        this.apiService.registerVote(this.campagn, vote);
-        document.getElementById('loadingDiv').setAttribute("style", "display:block");
-        this.apiService.checkMyVote(this.campagn).then(hash => {
-            if (hash)
-            this.hash = hash;
-            document.getElementById('loadingDiv').setAttribute("style", "display:none");
-
+        this.hasVoted = true;
+        this.apiService.registerVote(this.campagn, vote).then(tx => {
+            this.hash = tx.transactionHash;
+            this.next();
         });
-        this.next();
-
+        
     }
 
     refreshResults() {
-         
+        this.getCampagnResult(this.campagn);
+    }
+
+    seeResults(){
+        this.next();
     }
   }
