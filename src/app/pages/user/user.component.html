@@ -9,6 +9,7 @@
                         {{campagn.name}} <br />
                         <div class="option-dates">Opening on {{campagn.timeBegin | date:'dd/MM/yyyy HH:mm'}} </div>
                         <div class="option-dates">Closing on {{campagn.timeEnd  | date:'dd/MM/yyyy HH:mm' }}</div>
+                        <div>{{getCampagnResult(campagn)}}</div>
                     </mat-list-option>
                 </mat-selection-list>
                 <div class="campaign-selected" *ngIf="campagn.selectedOptions.selected[0]">

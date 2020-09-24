@@ -17,6 +17,9 @@ import { User } from 'src/app/shared/models/user';
     step : number = 1;
     vote: Vote;
     hash: string;
+    resultPromises: {[id: number]: Promise<any>} = {};
+    result: {[id: number]: [number, number, number]} = {};
+
     constructor(public apiService: ApiService) {
         this.apiService.getOwnMeetings(undefined, undefined, undefined, undefined, 'timeEnd', 'DESC').then(campaigns => {
             this.campagns = campaigns.result;
@@ -25,7 +28,21 @@ import { User } from 'src/app/shared/models/user';
 
     checkAvailability(campagn : Meeting){
         return  new Date(campagn.timeBegin) < new Date() && new Date() < new Date(campagn.timeEnd) ;
+    }
 
+    getCampagnResult(campagn: Meeting) {
+        if(new Date() < new Date(campagn.timeEnd)) return 'Unknown yet';
+        if(!this.resultPromises[campagn.id]) {
+            this.resultPromises[campagn.id] = Promise.all([
+                this.apiService.getVotesFor(campagn),
+                this.apiService.getVotesAgainst(campagn),
+                this.apiService.getVotesEmpty(campagn) 
+            ]).then(v => this.result[campagn.id] = v);
+            return 'Unknown yet';
+        } else if(this.result[campagn.id]) {
+            return 'For: ' + this.result[campagn.id][0] + ', Against: ' + this.result[campagn.id][1] + ', Invalid: '  + this.result[campagn.id][2];
+        }
+        return 'Unknown yet';
     }
 
     selectCampaign(campagn : Meeting) {
@@ -47,7 +64,6 @@ import { User } from 'src/app/shared/models/user';
     }
 
     registerVote(vote : Vote){
-
         this.apiService.registerVote(this.campagn, vote);
         document.getElementById('loadingDiv').setAttribute("style", "display:block");
         this.apiService.checkMyVote(this.campagn).then(hash => {
